@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+
+    <div id="app-2">
+        <!--
+            v-开头的都是指令（attribute）
+        -->
+        <span v-bind:title="message">
+            鼠标悬停几秒钟可查看绑定信息
+        </span>
+    </div>
+
+    <!--
+        条件循环
+    -->
+    <div id="app-3">
+        <p v-if="seen">
+            现在你看到我了
+        </p>
+    </div>
+
+    <!--
+        循环列表
+        通过v-for 来绑定数据，循环将数据展示出来
+    -->
+    <div id="app-4">
+        <ol>
+            <li v-for="data in todos">
+                {{data.text}}
+            </li>
+        </ol>
+    </div>
+</body>
+
+</html>
+<!-- 1、导入Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //数据绑定
+    var vm = new Vue({
+        el:"#app",
+        //model 数据
+        data:{
+                message:"hello vue"
+        }
+    });
+    
+    var app2 = new Vue({
+        el:"#app-2",
+        data:{
+            message:'页面加载于'+new Date().toDateString()
+        }
+    });
+
+    var app3 = new Vue({
+        el:"#app-3",
+        data:{
+            seen:false
+        }
+    });
+    var app4 = new Vue({
+        el:"#app-4",
+        data:{
+            todos:[
+                {text:"学习javascript"},
+                {text:"学习vue"},
+                {text:"学习java"}
+            ]
+        }
+    });
+    //向todos中添加数据
+    app4.todos.push({text:"helloworld"});
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app-2">
+        <ol>
+            <todo-item v-for="item in grocerList"
+            v-bind:todo="item"
+            v-bind:key="item.id"></todo-item>
+        </ol>
+    </div>
+</body>
+</html>
+
+<!-- 1、导入Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    /**
+     * Vue组件应用构建
+     * 系统组件是Vue的一个重要概念，因为它是抽象，允许我们使用小型、独立和通常可复用的组件构建大型应用
+     **/
+
+    //定义一个名为todo-item的组件
+    Vue.component('todo-item',{
+        props:['todo'],
+        template:'<li>{{todo.text}}</li>'
+    });
+
+    var app = new Vue({
+        el:"#app-2",
+        data:{
+            grocerList:[
+                {id:0,text:"苹果"},
+                {id:1,text:"梨子"},
+                {id:2,text:"香蕉"}
+            ]
+        }
+    });
+</script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app-1">
+        <p>{{message}}</p>
+        <!--
+            v-on绑定时间监听，click 鼠标点击事件
+        -->
+        <button v-on:click="reverseMessage">反转消息</button>
+    </div>
+    <!--
+        v-model实现表单输入和应用状态之间的双向绑定
+    -->
+    <div id="app-2">
+        <p>{{message}}</p>
+        <input type="text" name="" id="" v-model="message">
+    </div>
+</body>
+</html>
+<!-- 1、导入Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app1 = new Vue({
+        el:"#app-1",
+        data:{
+            message:"hello Vue!"
+        },
+        //绑定事件执行方法放在methods中
+        methods:{
+            reverseMessage:function(){
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    });
+
+    var app2 = new Vue({
+        el:"#app-2",
+        data:{
+            message:""
+        }
+    });
+</script>
